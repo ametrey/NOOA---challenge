@@ -1,8 +1,15 @@
 package ar.com.ada.api.boyas.entities;
 
+import java.util.*;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Boya {
@@ -20,9 +27,21 @@ public class Boya {
     @Column(name = "latitud_instalacion")
     private double latitudInstalacion;
 
+    @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Muestra> muestras = new ArrayList<>();
+
 
 
     
+
+    public List<Muestra> getMuestras() {
+        return muestras;
+    }
+
+    public void setMuestras(List<Muestra> muestras) {
+        this.muestras = muestras;
+    }
 
     public Integer getBoyaId() {
         return boyaId;

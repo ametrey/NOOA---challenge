@@ -37,5 +37,9 @@ public class BoyaService {
 
     public void actualizar(Boya boya) {
     }
+
+    public Boya buscarMuestra(Integer boyaId) {
+        return null;
+    }
     
 }

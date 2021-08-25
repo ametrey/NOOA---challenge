@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.boyas.entities.Boya;
-import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
+
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.services.BoyaService;
 

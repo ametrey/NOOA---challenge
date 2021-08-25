@@ -5,7 +5,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.print.attribute.standard.DateTimeAtCreation;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Muestra {
@@ -14,8 +16,9 @@ public class Muestra {
     @Column(name = "muestra_id")
     private Integer muestraId;
 
-    @Column(name = "boya_id")
-    private Integer boyaId;
+    @ManyToOne
+    @JoinColumn(name = "boya_id", referencedColumnName = "boya_id")
+    private Boya boya;
 
     @Column(name = "horario_muestra")
     private Date horarioMuestra;
@@ -41,12 +44,12 @@ public class Muestra {
         this.muestraId = muestraId;
     }
 
-    public Integer getBoyaId() {
-        return boyaId;
+    public Boya getBoya() {
+        return boya;
     }
 
-    public void setBoyaId(Integer boyaId) {
-        this.boyaId = boyaId;
+    public void setBoyaId(Boya boya) {
+        this.boya = boya;
     }
 
     public Date getHorarioMuestra() {
