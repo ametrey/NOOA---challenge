@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import ar.com.ada.api.boyas.entities.Boya;
+
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.services.MuestraService;
 
@@ -24,7 +24,7 @@ public class MuestraController {
 
         List<Muestra> muestras = service.traerMuestrasPorBoyaId(boyaId);
         
-        
+        return ResponseEntity.ok(muestras);
         
     }
     
