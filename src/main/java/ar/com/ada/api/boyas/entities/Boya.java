@@ -19,7 +19,7 @@ public class Boya {
     private Integer boyaId;
 
     @Column(name = "luz_color")
-    private String luzColor;
+    private Integer luzColor;
 
     @Column(name = "longitud_instalacion")
     private double longitudInstalacion;
@@ -51,12 +51,13 @@ public class Boya {
         this.boyaId = boyaId;
     }
 
-    public String getLuzColor() {
-        return luzColor;
+    public ColorBoyaEnum getLuzColor() {
+       
+        return ColorBoyaEnum.parse(luzColor);
     }
 
-    public void setLuzColor(String luzColor) {
-        this.luzColor = luzColor;
+    public void setLuzColor(ColorBoyaEnum luzColor) {
+        this.luzColor = luzColor.getValue();
     }
 
     public double getLongitudInstalacion() {
@@ -80,7 +81,7 @@ public class Boya {
 
         private final Integer value;
 
-        // NOTE: Enum constructor tiene que estar en privado
+        
         private ColorBoyaEnum(Integer value) {
             this.value = value;
         }

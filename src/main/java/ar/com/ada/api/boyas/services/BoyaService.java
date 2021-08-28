@@ -36,6 +36,7 @@ public class BoyaService {
     }
 
     public void actualizar(Boya boya) {
+        repo.save(boya);
     }
 
     public Boya buscarMuestra(Integer boyaId) {

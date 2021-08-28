@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.boyas.entities.Boya;
-
+import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.services.BoyaService;
 
@@ -46,7 +46,7 @@ public class BoyaController {
     }
 
     @PutMapping("/boyas/{id}")
-    public ResponseEntity<GenericResponse> modificarColor(@PathVariable Integer id, @RequestBody String color) {
+    public ResponseEntity<GenericResponse> modificarColor(@PathVariable Integer id, @RequestBody ColorBoyaEnum color) {
 
         GenericResponse respuesta = new GenericResponse();
 
@@ -58,6 +58,7 @@ public class BoyaController {
         service.actualizar(boya);
 
         respuesta.message = "boya actualizada";
+        
         return ResponseEntity.ok(respuesta);
     }
 
