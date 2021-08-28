@@ -17,7 +17,6 @@ import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.models.request.MuestraRequest;
-import ar.com.ada.api.boyas.models.response.ColorResponse;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.models.response.MuestraResponse;
 
