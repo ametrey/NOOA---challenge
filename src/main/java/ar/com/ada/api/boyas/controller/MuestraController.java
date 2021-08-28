@@ -1,5 +1,6 @@
 package ar.com.ada.api.boyas.controller;
 
+import java.text.ParseException;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
-
-
+import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
+import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.models.request.MuestraRequest;
+import ar.com.ada.api.boyas.models.response.ColorResponse;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.models.response.MuestraResponse;
 
@@ -37,12 +39,25 @@ public class MuestraController {
         
     }
 
-    @PostMapping("/muestras")
-    public ResponseEntity<?> crearMuestra(@RequestBody MuestraRequest muestraReq){
+    @GetMapping("/muestras/colores/{color}")
+    public ResponseEntity<List<Boya>> obtenerBoyaPorColor(@PathVariable ColorBoyaEnum color){
         
+       
+
+        List<Boya> boyas = service.traerBoyasPorColor(color);
+        
+        
+        
+        return ResponseEntity.ok(boyas);
+        
+    }
+
+    @PostMapping("/muestras")
+    public ResponseEntity<?> crearMuestra(@RequestBody MuestraRequest req) throws ParseException{
+
         MuestraResponse respuesta = new MuestraResponse();
 
-        Muestra muestra = service.crearMuestra(muestra);
+        Muestra muestra = service.crearMuestra(req.boyaId,req.horario,req.matricula,req.latitud,req.longitud,req.alturNivelDelMar);
 
         respuesta.id = muestra.getMuestraId();
 
@@ -64,7 +79,7 @@ public class MuestraController {
 
         respuesta.isOk = true;
         respuesta.id = muestra.getMuestraId();
-        respuesta.message = "muestra elminada con éxito";
+        respuesta.message = "muestra eliminada con éxito";
         
         return ResponseEntity.ok(respuesta);
 
