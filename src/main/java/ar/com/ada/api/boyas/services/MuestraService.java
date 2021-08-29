@@ -68,10 +68,38 @@ public class MuestraService{
     
     public List<Boya> traerBoyasPorColor(ColorBoyaEnum color) {
         
-        List<Boya> boyas = new ArrayList<>();
-      //  boyas.add(repo.traerBoyaPorColor(color));
+        return boyaService.traerBoyasPorColor(color);
+    }
+
+    public Muestra traerMuestraMinimaProBoyaId(Integer idBoya) {
+
+        Boya boya = boyaService.buscarBoyaPorId(idBoya);
+        Muestra muestraMin = boya.getMuestras().get(0);
         
-        return boyas;
+        for(Muestra muestra : boya.getMuestras()){
+
+            if(muestra.getAlturaNivelMar() < muestraMin.getAlturaNivelMar()){
+                muestraMin = muestra;
+            }
+
+        }
+        return muestraMin;
+    }
+
+    public void ResetearColor(Boya boya) {
+
+       boya.setLuzColor(ColorBoyaEnum.AZUL);
+    }
+
+    public Muestra buscarMuestraPorId(Integer id) {
+        
+        Optional<Muestra> resultado = repo.findById(id);
+        Muestra muestra = null;
+
+        if (resultado.isPresent())
+            muestra = resultado.get();
+
+        return muestra;
     }
     
 }

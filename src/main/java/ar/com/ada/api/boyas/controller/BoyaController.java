@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.boyas.entities.Boya;
 
-import ar.com.ada.api.boyas.models.request.NuevoColor;
+import ar.com.ada.api.boyas.models.request.ColorEnumRequest;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.services.BoyaService;
 
@@ -47,7 +47,7 @@ public class BoyaController {
     }
 
     @PutMapping("/boyas/{id}")
-    public ResponseEntity<GenericResponse> modificarColor(@PathVariable Integer id, @RequestBody NuevoColor color) {
+    public ResponseEntity<GenericResponse> modificarColor(@PathVariable Integer id, @RequestBody ColorEnumRequest color) {
 
         GenericResponse respuesta = new GenericResponse();
 

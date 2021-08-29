@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.boyas.entities.Boya;
+import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.repositories.BoyaRepository;
 
 @Service
@@ -41,6 +42,22 @@ public class BoyaService {
 
     public Boya buscarMuestra(Integer idBoya) {
         return null;
+    }
+
+    public List <Boya> traerBoyasPorColor(ColorBoyaEnum color) {
+
+        List <Boya> boyas = new ArrayList<>();
+        
+        for(Boya boya : repo.findAll()){
+
+            if(boya.getLuzColor().equals(color)){
+                boyas.add(boya);
+            }
+        }
+
+        return boyas;
+
+
     }
     
 }

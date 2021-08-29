@@ -10,7 +10,7 @@ public class MuestraRequest {
     public String matricula;
     public double latitud;
     public double longitud;
-    public double alturNivelDelMar;
+    public double alturaNivelDelMar;
 
 
 
