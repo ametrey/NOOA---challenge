@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
-import ar.com.ada.api.boyas.repositories.BoyaRepository;
+
 import ar.com.ada.api.boyas.repositories.MuestraRepository;
 
 @Service
@@ -22,9 +22,11 @@ public class MuestraService{
     @Autowired
     BoyaService boyaService;
 
-    public List<Muestra> traerMuestrasPorBoyaId(Integer boyaId) {
+    public List<Muestra> traerMuestrasPorBoyaId(Integer idBoya) {
         
-        Boya boya = boyaService.buscarMuestra(boyaId);
+        Boya boya = boyaService.buscarBoyaPorId(idBoya);
+        
+        
         
         return boya.getMuestras();
     }
@@ -63,16 +65,11 @@ public class MuestraService{
         return repo.getById(id);
     }
 
-    public Boya traerBoyaPorColor(ColorBoyaEnum color) {
-        
-        
-        return repo.traerBoyaPorColor(color);
-    }
-
+    
     public List<Boya> traerBoyasPorColor(ColorBoyaEnum color) {
         
         List<Boya> boyas = new ArrayList<>();
-        boyas.add(repo.traerBoyaPorColor(color));
+      //  boyas.add(repo.traerBoyaPorColor(color));
         
         return boyas;
     }

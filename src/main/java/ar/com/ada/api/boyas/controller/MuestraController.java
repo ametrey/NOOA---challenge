@@ -30,9 +30,9 @@ public class MuestraController {
 
 
     @GetMapping("/muestras/boyas/{idBoya}")
-    public ResponseEntity<List<Muestra>> obtenerMuestraBoyaId(@PathVariable Integer boyaId){
+    public ResponseEntity<List<Muestra>> obtenerMuestraBoyaId(@PathVariable Integer idBoya){
 
-        List<Muestra> muestras = service.traerMuestrasPorBoyaId(boyaId);
+        List<Muestra> muestras = service.traerMuestrasPorBoyaId(idBoya);
         
         return ResponseEntity.ok(muestras);
         
@@ -42,11 +42,9 @@ public class MuestraController {
     public ResponseEntity<List<Boya>> obtenerBoyaPorColor(@PathVariable ColorBoyaEnum color){
         
        
-
         List<Boya> boyas = service.traerBoyasPorColor(color);
-        
-        
-        
+    
+       
         return ResponseEntity.ok(boyas);
         
     }

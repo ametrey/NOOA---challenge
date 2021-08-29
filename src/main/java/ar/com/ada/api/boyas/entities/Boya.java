@@ -91,7 +91,8 @@ public class Boya {
         }
 
         public static ColorBoyaEnum parse(Integer id) {
-            ColorBoyaEnum status = null; // Default
+            ColorBoyaEnum status = null; 
+            
             for (ColorBoyaEnum item : ColorBoyaEnum.values()) {
                 if (item.getValue().equals(id)) {
                     status = item;

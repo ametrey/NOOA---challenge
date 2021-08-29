@@ -39,7 +39,7 @@ public class BoyaService {
         repo.save(boya);
     }
 
-    public Boya buscarMuestra(Integer boyaId) {
+    public Boya buscarMuestra(Integer idBoya) {
         return null;
     }
     
