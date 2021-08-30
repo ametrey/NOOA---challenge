@@ -59,5 +59,11 @@ public class BoyaService {
 
 
     }
+
+    public void ResetearColor(Boya boya) {
+
+        boya.setLuzColor(ColorBoyaEnum.AZUL);
+        repo.save(boya);
+    }
     
 }

@@ -53,8 +53,9 @@ public class Muestra {
         return boya;
     }
 
-    public void setBoyaId(Boya boya) {
+    public void setBoya(Boya boya) {
         this.boya = boya;
+        this.boya.agregarMuestra(this);
     }
 
     public Date getHorarioMuestra() {

@@ -112,7 +112,7 @@ public class MuestraController {
         
         Boya boya = serviceBoya.buscarBoyaPorId(muestra.getBoya().getBoyaId());
 
-        service.ResetearColor(boya);
+        serviceBoya.ResetearColor(boya);
 
         respuesta.isOk = true;
         respuesta.id = muestra.getBoya().getBoyaId();

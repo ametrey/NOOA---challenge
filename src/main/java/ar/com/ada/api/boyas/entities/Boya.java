@@ -27,7 +27,7 @@ public class Boya {
     @Column(name = "latitud_instalacion")
     private double latitudInstalacion;
 
-    @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "boya", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Muestra> muestras = new ArrayList<>();
 
@@ -74,6 +74,10 @@ public class Boya {
 
     public void setLatitudInstalacion(double latitudInstalacion) {
         this.latitudInstalacion = latitudInstalacion;
+    }
+
+    public void agregarMuestra (Muestra muestra){
+        this.muestras.add(muestra);
     }
 
     public enum ColorBoyaEnum {

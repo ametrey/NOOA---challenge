@@ -12,7 +12,7 @@ import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.entities.Muestra.TipoAlertaEnum;
 import ar.com.ada.api.boyas.repositories.MuestraRepository;
-import net.bytebuddy.asm.Advice.Return;
+
 
 @Service
 public class MuestraService {
@@ -43,7 +43,7 @@ public class MuestraService {
 
         Muestra muestra = new Muestra();
         Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(horario);
-        muestra.setBoyaId(boyaService.buscarBoyaPorId(boyaId));
+        muestra.setBoya(boyaService.buscarBoyaPorId(boyaId));
         muestra.setHorarioMuestra(date);
         muestra.setMatriculaEmbarcacion(matricula);
         muestra.setLatitud(latitud);
@@ -85,11 +85,7 @@ public class MuestraService {
         return muestraMin;
     }
 
-    public void ResetearColor(Boya boya) {
-
-        boya.setLuzColor(ColorBoyaEnum.AZUL);
-    }
-
+    
     public Muestra buscarMuestraPorId(Integer id) {
 
         Optional<Muestra> resultado = repo.findById(id);
