@@ -3,6 +3,7 @@ package ar.com.ada.api.boyas.controller;
 import java.text.ParseException;
 import java.util.*;
 
+import org.hibernate.loader.OuterJoinableAssociation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
-import ar.com.ada.api.boyas.models.request.MuestraDelete;
 import ar.com.ada.api.boyas.models.request.MuestraRequest;
+import ar.com.ada.api.boyas.models.request.TipoAlerta;
+import ar.com.ada.api.boyas.models.response.AnomaliaResponse;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.models.response.MuestraResponse;
 import ar.com.ada.api.boyas.services.BoyaService;
@@ -28,6 +30,11 @@ public class MuestraController {
 
     @Autowired
     MuestraService service;
+
+    @Autowired
+    BoyaService serviceBoya;
+
+    
 
 
     @GetMapping("/muestras/boyas/{idBoya}")
@@ -59,6 +66,26 @@ public class MuestraController {
     }
     // fin bonus 1
 
+    //epic bonus
+
+    @GetMapping("/muestras/anomalias/{idBoya}")
+    public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya){
+        
+        AnomaliaResponse respuesta = new AnomaliaResponse();
+        
+        List<Muestra> muestras = service.traerMuestrasPorBoyaId(idBoya);
+
+        respuesta.tipoAlerta = service.alertaAnomalia(muestras);
+
+
+
+        
+        return ResponseEntity.ok(respuesta);
+        
+    }
+
+    //fin epic bonus
+
     @PostMapping("/muestras")
     public ResponseEntity<?> crearMuestra(@RequestBody MuestraRequest req) throws ParseException{
 
@@ -75,14 +102,17 @@ public class MuestraController {
         
     }
 
+    //no funciona:
     @DeleteMapping("/muestras/{id}")
-    public ResponseEntity<?> eliminarMuestra(@PathVariable Integer id, @RequestBody MuestraDelete muestraId){
+    public ResponseEntity<?> eliminarMuestra(@PathVariable Integer id){
         
         GenericResponse respuesta = new GenericResponse();
 
         Muestra muestra = service.buscarMuestraPorId(id);
         
-        service.ResetearColor(muestra.getBoya());
+        Boya boya = serviceBoya.buscarBoyaPorId(muestra.getBoya().getBoyaId());
+
+        service.ResetearColor(boya);
 
         respuesta.isOk = true;
         respuesta.id = muestra.getBoya().getBoyaId();

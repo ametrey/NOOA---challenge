@@ -1,6 +1,6 @@
 package ar.com.ada.api.boyas.entities;
 
-import java.util.Date;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import ar.com.ada.api.boyas.models.response.AnomaliaResponse;
 
 
 @Entity
@@ -96,4 +98,31 @@ public class Muestra {
     }
 
     
+
+    public enum TipoAlertaEnum {
+        KAIJU(1), IMPACTO(2), SIN_ANOMALIAS(3);
+
+        private final Integer value;
+
+        
+        private TipoAlertaEnum(Integer value) {
+            this.value = value;
+        }
+
+        public Integer getValue() {
+            return value;
+        }
+
+        public static TipoAlertaEnum parse(Integer id) {
+            TipoAlertaEnum status = null; 
+
+            for (TipoAlertaEnum item : TipoAlertaEnum.values()) {
+                if (item.getValue().equals(id)) {
+                    status = item;
+                    break;
+                }
+            }
+            return status;
+        }
+    }
 }
