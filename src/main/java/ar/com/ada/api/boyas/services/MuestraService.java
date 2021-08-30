@@ -161,8 +161,13 @@ public class MuestraService {
     }
 
     public Long minutos (Date primerFecha, Date segundaFecha){
-        Long resultado = primerFecha.getTime() - segundaFecha.getTime();
-        resultado = (resultado / (1000*60)) % 60;
+        int diferenciaDias = Math.abs((int) ((primerFecha.getTime() - segundaFecha.getTime()) / (1000 * 60 * 60 * 24)));
+        Long diferenciaHoras = (primerFecha.getTime() - segundaFecha.getTime()) / (60 * 60 * 1000);
+        Long diferenciaMinutos = (primerFecha.getTime() - segundaFecha.getTime()) / (60 * 1000) % 60;
+       
+
+        Long resultado = segundaFecha.getTime() - primerFecha.getTime();
+        resultado = resultado / (1000*60) % 60;
         
         return resultado;
     }
