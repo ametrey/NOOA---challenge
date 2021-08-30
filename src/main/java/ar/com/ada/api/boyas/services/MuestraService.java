@@ -104,11 +104,11 @@ public class MuestraService {
     // epic bonus
 
     public TipoAlertaEnum alertaAnomalia(List<Muestra> muestras){
-        if(esAlertaImpacto(muestras)){
-            return TipoAlertaEnum.IMPACTO;
-        }
         if(esAlertaKaiju(muestras)){
             return TipoAlertaEnum.KAIJU;
+        }
+        if(esAlertaImpacto(muestras)){
+            return TipoAlertaEnum.IMPACTO;
         }
         return TipoAlertaEnum.SIN_ANOMALIAS;
     }
@@ -161,9 +161,10 @@ public class MuestraService {
     }
 
     public Long minutos (Date primerFecha, Date segundaFecha){
+        /*Long result = primerFecha.getTime() - segundaFecha.getTime();
         int diferenciaDias = Math.abs((int) ((primerFecha.getTime() - segundaFecha.getTime()) / (1000 * 60 * 60 * 24)));
-        Long diferenciaHoras = (primerFecha.getTime() - segundaFecha.getTime()) / (60 * 60 * 1000);
-        Long diferenciaMinutos = (primerFecha.getTime() - segundaFecha.getTime()) / (60 * 1000) % 60;
+        Long diferenciaHoras = (primerFecha.getTime() - segundaFecha.getTime()) / (60 * 60 * 1000);*/
+        Long diferenciaMinutos = Math.abs((primerFecha.getTime() - segundaFecha.getTime()) / (60 * 1000));
        
 
         Long resultado = segundaFecha.getTime() - primerFecha.getTime();
