@@ -71,18 +71,13 @@ public class MuestraController {
 
     @GetMapping("/muestras/anomalias/{idBoya}")
     public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya){
-        List<Anomalia> anomalias = new ArrayList<>();
+        List<Muestra> muestrasAnomalas = new ArrayList<>();
         
         AnomaliaResponse respuesta = new AnomaliaResponse();
         
-        List<Muestra> muestras = service.traerMuestrasPorBoyaId(idBoya);
-
-        
         
 
-
-
-        
+               
         return ResponseEntity.ok(respuesta);
         
     }
