@@ -3,7 +3,6 @@ package ar.com.ada.api.boyas.controller;
 import java.text.ParseException;
 import java.util.*;
 
-import org.hibernate.loader.OuterJoinableAssociation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,8 +18,6 @@ import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.models.request.MuestraRequest;
-import ar.com.ada.api.boyas.models.request.TipoAlerta;
-import ar.com.ada.api.boyas.models.response.AnomaliaResponse;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.models.response.MuestraResponse;
 import ar.com.ada.api.boyas.services.BoyaService;
@@ -34,6 +31,9 @@ public class MuestraController {
 
     @Autowired
     BoyaService serviceBoya;
+
+    @Autowired
+    Anomalia anomalia;
 
     
 
@@ -71,14 +71,12 @@ public class MuestraController {
 
     @GetMapping("/muestras/anomalias/{idBoya}")
     public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya){
-        List<Muestra> muestrasAnomalas = new ArrayList<>();
         
-        AnomaliaResponse respuesta = new AnomaliaResponse();
-        
-        
-
                
-        return ResponseEntity.ok(respuesta);
+        List<Anomalia> anomalias = anomalia.traerAnomalias(service.traerMuestrasPorBoyaId(idBoya));
+        
+                       
+        return ResponseEntity.ok(anomalias);
         
     }
 

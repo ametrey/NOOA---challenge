@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import ar.com.ada.api.boyas.entities.Muestra.TipoAlertaEnum;
-import ar.com.ada.api.boyas.models.request.TipoAlerta;
 
 public class Anomalia {
 

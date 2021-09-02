@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import ar.com.ada.api.boyas.models.response.AnomaliaResponse;
-
 
 @Entity
 public class Muestra {

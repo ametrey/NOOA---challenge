@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
-import ar.com.ada.api.boyas.entities.Muestra.TipoAlertaEnum;
 import ar.com.ada.api.boyas.repositories.MuestraRepository;
 
 
