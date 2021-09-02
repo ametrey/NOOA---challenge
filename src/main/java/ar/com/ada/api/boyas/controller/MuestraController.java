@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.ada.api.boyas.entities.Anomalia;
 import ar.com.ada.api.boyas.entities.Boya;
 import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
@@ -70,12 +71,14 @@ public class MuestraController {
 
     @GetMapping("/muestras/anomalias/{idBoya}")
     public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya){
+        List<Anomalia> anomalias = new ArrayList<>();
         
         AnomaliaResponse respuesta = new AnomaliaResponse();
         
         List<Muestra> muestras = service.traerMuestrasPorBoyaId(idBoya);
 
-        respuesta.tipoAlerta = service.alertaAnomalia(muestras);
+        
+        
 
 
 
