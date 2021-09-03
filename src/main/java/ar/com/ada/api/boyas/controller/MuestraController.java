@@ -90,7 +90,7 @@ public class MuestraController {
         Muestra muestra = service.crearMuestra(req.boyaId,req.horario,req.matricula,req.latitud,req.longitud,req.alturaNivelDelMar);
 
         respuesta.id = muestra.getMuestraId();
-
+        serviceBoya.definirColorBoya(muestra.getBoya(), muestra);
         respuesta.color = muestra.getBoya().getLuzColor();
                   
         
@@ -98,9 +98,9 @@ public class MuestraController {
         
     }
 
-    //no funciona:
+    
     @DeleteMapping("/muestras/{id}")
-    public ResponseEntity<?> eliminarMuestra(@PathVariable Integer id){
+    public ResponseEntity<?> resetBoyaColor(@PathVariable Integer id){
         
         GenericResponse respuesta = new GenericResponse();
 

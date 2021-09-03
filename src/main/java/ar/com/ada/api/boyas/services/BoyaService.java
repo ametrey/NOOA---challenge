@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.com.ada.api.boyas.entities.Boya;
+import ar.com.ada.api.boyas.entities.Muestra;
 import ar.com.ada.api.boyas.entities.Boya.ColorBoyaEnum;
 import ar.com.ada.api.boyas.repositories.BoyaRepository;
 
@@ -32,31 +33,29 @@ public class BoyaService {
     }
 
     public void crearBoya(Boya boya) {
+
+        boya.setLuzColor(ColorBoyaEnum.AZUL);
         repo.save(boya);
 
     }
 
     public void actualizar(Boya boya) {
+
         repo.save(boya);
     }
 
-    public Boya buscarMuestra(Integer idBoya) {
-        return null;
-    }
+    public List<Boya> traerBoyasPorColor(ColorBoyaEnum color) {
 
-    public List <Boya> traerBoyasPorColor(ColorBoyaEnum color) {
+        List<Boya> boyas = new ArrayList<>();
 
-        List <Boya> boyas = new ArrayList<>();
-        
-        for(Boya boya : repo.findAll()){
+        for (Boya boya : repo.findAll()) {
 
-            if(boya.getLuzColor().equals(color)){
+            if (boya.getLuzColor().equals(color)) {
                 boyas.add(boya);
             }
         }
 
         return boyas;
-
 
     }
 
@@ -65,5 +64,16 @@ public class BoyaService {
         boya.setLuzColor(ColorBoyaEnum.AZUL);
         repo.save(boya);
     }
-    
+
+    public void definirColorBoya(Boya boya, Muestra muestra) {
+
+        if (muestra.getAlturaNivelMar() < -100 || muestra.getAlturaNivelMar() > 100) {
+            boya.setLuzColor(ColorBoyaEnum.ROJO);
+        } else if (muestra.getAlturaNivelMar() < -50 || muestra.getAlturaNivelMar() > 50) {
+            boya.setLuzColor(ColorBoyaEnum.AMARILLO);
+        } else {
+            boya.setLuzColor(ColorBoyaEnum.VERDE);
+        }
+        repo.save(boya);
+    }
 }

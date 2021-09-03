@@ -48,17 +48,18 @@ public class Anomalia {
     public List<Anomalia> traerAnomalias(List<Muestra> muestras) {
 
         List<Anomalia> anomalias = new ArrayList<>();
-        Anomalia anomalia = new Anomalia();
+        Anomalia impacto = new Anomalia();
+        Anomalia kaiju = new Anomalia();
 
         for (int i = 0; i < muestras.size(); i++) {
 
             if (i < muestras.size() - 1 && (diferenciaAltura(muestras.get(i).getAlturaNivelMar(),
                     muestras.get(i + 1).getAlturaNivelMar()) > 500)) {
-                anomalia.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
-                anomalia.setHorarioInicioAnomalia(muestras.get(i + 1).getHorarioMuestra());
-                anomalia.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
-                anomalia.setTipoAlerta(TipoAlertaEnum.IMPACTO);
-                anomalias.add(anomalia);
+                impacto.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
+                impacto.setHorarioInicioFinAnomalia(muestras.get(i + 1).getHorarioMuestra());
+                impacto.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
+                impacto.setTipoAlerta(TipoAlertaEnum.IMPACTO);
+                anomalias.add(impacto);
 
             }
         }
@@ -69,12 +70,12 @@ public class Anomalia {
                     && (minutos(muestras.get(i).getHorarioMuestra(), muestras.get(i + 1).getHorarioMuestra()) > 10
                             && diferenciaAltura(muestras.get(i).getAlturaNivelMar(),
                                     muestras.get(i + 1).getAlturaNivelMar()) == 200)) {
-                anomalia.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
-                anomalia.setHorarioInicioAnomalia(muestras.get(i + 1).getHorarioMuestra());
-                anomalia.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
-                anomalia.setTipoAlerta(TipoAlertaEnum.KAIJU);
-                anomalias.add(anomalia);
-                
+                kaiju.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
+                kaiju.setHorarioInicioAnomalia(muestras.get(i + 1).getHorarioMuestra());
+                kaiju.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
+                kaiju.setTipoAlerta(TipoAlertaEnum.KAIJU);
+                anomalias.add(kaiju);
+
             }
         }
 
