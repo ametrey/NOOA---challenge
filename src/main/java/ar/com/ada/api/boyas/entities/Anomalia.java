@@ -71,7 +71,7 @@ public class Anomalia {
                             && diferenciaAltura(muestras.get(i).getAlturaNivelMar(),
                                     muestras.get(i + 1).getAlturaNivelMar()) == 200)) {
                 kaiju.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
-                kaiju.setHorarioInicioAnomalia(muestras.get(i + 1).getHorarioMuestra());
+                kaiju.setHorarioInicioFinAnomalia(muestras.get(i + 1).getHorarioMuestra());
                 kaiju.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
                 kaiju.setTipoAlerta(TipoAlertaEnum.KAIJU);
                 anomalias.add(kaiju);
