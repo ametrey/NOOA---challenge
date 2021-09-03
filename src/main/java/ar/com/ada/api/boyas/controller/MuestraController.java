@@ -32,8 +32,8 @@ public class MuestraController {
     @Autowired
     BoyaService serviceBoya;
 
-    @Autowired
-    Anomalia anomalia;
+    
+    Anomalia anomalia = new Anomalia();
 
     
 
@@ -62,7 +62,7 @@ public class MuestraController {
         
         
         
-        return ResponseEntity.ok(service.traerMuestraMinimaProBoyaId(idBoya));
+        return ResponseEntity.ok(service.traerMuestraMinimaPorBoyaId(idBoya));
 
     }
     // fin bonus 1
@@ -72,7 +72,7 @@ public class MuestraController {
     @GetMapping("/muestras/anomalias/{idBoya}")
     public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya){
         
-               
+             
         List<Anomalia> anomalias = anomalia.traerAnomalias(service.traerMuestrasPorBoyaId(idBoya));
         
                        

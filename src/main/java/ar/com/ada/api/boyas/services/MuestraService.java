@@ -69,7 +69,7 @@ public class MuestraService {
         return boyaService.traerBoyasPorColor(color);
     }
 
-    public Muestra traerMuestraMinimaProBoyaId(Integer idBoya) {
+    public Muestra traerMuestraMinimaPorBoyaId(Integer idBoya) {
 
         Boya boya = boyaService.buscarBoyaPorId(idBoya);
         Muestra muestraMin = boya.getMuestras().get(0);
