@@ -32,9 +32,11 @@ public class BoyaService {
 
     }
 
-    public void crearBoya(Boya boya) {
+    public void crearBoya(Double longitud, Double latitud) {
 
-        boya.setLuzColor(ColorBoyaEnum.AZUL);
+        Boya boya = new Boya();
+        boya.setLongitudInstalacion(longitud);
+        boya.setLatitudInstalacion(latitud);
         repo.save(boya);
 
     }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ar.com.ada.api.boyas.entities.Boya;
-
+import ar.com.ada.api.boyas.models.request.BoyaRequest;
 import ar.com.ada.api.boyas.models.request.ColorEnumRequest;
 import ar.com.ada.api.boyas.models.response.GenericResponse;
 import ar.com.ada.api.boyas.services.BoyaService;
@@ -34,10 +34,10 @@ public class BoyaController {
     }
 
     @PostMapping("/boyas")
-    public ResponseEntity<?> crearBoya(@RequestBody Boya boya){
+    public ResponseEntity<?> crearBoya(@RequestBody Boya boya, @RequestBody BoyaRequest request){
         GenericResponse respuesta = new GenericResponse();
 
-        service.crearBoya(boya);
+        service.crearBoya(request.longitudInstalacion, request.latitudInstalacion);
 
         respuesta.isOk = true;
         respuesta.id = boya.getBoyaId();

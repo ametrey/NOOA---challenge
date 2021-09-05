@@ -2,12 +2,7 @@ package ar.com.ada.api.boyas.entities;
 
 import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Boya {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "boya_id")
     private Integer boyaId;
 
