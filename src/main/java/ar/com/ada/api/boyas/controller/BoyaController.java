@@ -34,10 +34,11 @@ public class BoyaController {
     }
 
     @PostMapping("/boyas")
-    public ResponseEntity<?> crearBoya(@RequestBody Boya boya, @RequestBody BoyaRequest request){
+    public ResponseEntity<?> crearBoya(@RequestBody BoyaRequest request){
+        
         GenericResponse respuesta = new GenericResponse();
 
-        service.crearBoya(request.longitudInstalacion, request.latitudInstalacion);
+        Boya boya = service.crearBoya(request.longitudInstalacion, request.latitudInstalacion);
 
         respuesta.isOk = true;
         respuesta.id = boya.getBoyaId();
