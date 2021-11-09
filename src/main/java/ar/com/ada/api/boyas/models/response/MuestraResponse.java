@@ -6,6 +6,8 @@ public class MuestraResponse {
     
     public Integer id;
     public ColorBoyaEnum color;
+    public String message;
+    public Boolean isOk;
 
     
 }

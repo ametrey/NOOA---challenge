@@ -48,6 +48,8 @@ public class BoyaService {
         repo.save(boya);
     }
 
+    
+
     public List<Boya> traerBoyasPorColor(ColorBoyaEnum color) {
 
         List<Boya> boyas = new ArrayList<>();
@@ -80,4 +82,15 @@ public class BoyaService {
         }
         repo.save(boya);
     }
+
+    public boolean validarCoordenadas(Boya boya) {
+        if((boya.getLatitudInstalacion() >= - 90 && boya.getLatitudInstalacion() <= 90) && (boya.getLongitudInstalacion() >= -90 && boya.getLongitudInstalacion() <= 90)){
+            return true;
+        }
+        return false;
+    }
+
+   
+
+   
 }

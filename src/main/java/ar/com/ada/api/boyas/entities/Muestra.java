@@ -2,14 +2,7 @@ package ar.com.ada.api.boyas.entities;
 
 import java.util.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.*;
 
 @Entity
 public class Muestra {
@@ -99,6 +92,7 @@ public class Muestra {
     
 
     public enum TipoAlertaEnum {
+
         KAIJU(1), IMPACTO(2), SIN_ANOMALIAS(3);
 
         private final Integer value;

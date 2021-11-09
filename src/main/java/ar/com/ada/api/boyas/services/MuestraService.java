@@ -96,6 +96,15 @@ public class MuestraService {
         return muestra;
     }
 
+    public boolean validarCoordenadas(Muestra muestra) {
+        if((muestra.getLatitud() >= - 90 && muestra.getLatitud() <= 90) && (muestra.getLongitud() >= -90 && muestra.getLongitud() <= 90)){
+            return true;
+        }
+        return false;
+    }
+
+    
+
   
 
 }

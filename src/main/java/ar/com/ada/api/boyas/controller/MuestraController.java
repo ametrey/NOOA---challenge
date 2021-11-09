@@ -32,91 +32,92 @@ public class MuestraController {
     @Autowired
     BoyaService serviceBoya;
 
-    
     Anomalia anomalia = new Anomalia();
 
-    
-
-
     @GetMapping("/muestras/boyas/{idBoya}")
-    public ResponseEntity<List<Muestra>> obtenerMuestraBoyaId(@PathVariable Integer idBoya){
+    public ResponseEntity<List<Muestra>> obtenerMuestraBoyaId(@PathVariable Integer idBoya) {
 
         List<Muestra> muestras = service.traerMuestrasPorBoyaId(idBoya);
-        
+
         return ResponseEntity.ok(muestras);
-        
+
     }
 
-    //bonus 1
+    // bonus 1
     @GetMapping("/muestras/colores/{color}")
-    public ResponseEntity<List<Boya>> obtenerBoyaPorColor(@PathVariable ColorBoyaEnum color){
-        
-       List<Boya> boyas = service.traerBoyasPorColor(color);
-       
-       return ResponseEntity.ok(boyas);
-        
+    public ResponseEntity<List<Boya>> obtenerBoyaPorColor(@PathVariable ColorBoyaEnum color) {
+
+        List<Boya> boyas = service.traerBoyasPorColor(color);
+
+        return ResponseEntity.ok(boyas);
+
     }
 
     @GetMapping("/muestras/minima/{idBoya}")
-    public ResponseEntity<Muestra> obtenerMuestraMinimaPorBoyaId(@PathVariable Integer idBoya){
-        
-        
-        
+    public ResponseEntity<Muestra> obtenerMuestraMinimaPorBoyaId(@PathVariable Integer idBoya) {
+
         return ResponseEntity.ok(service.traerMuestraMinimaPorBoyaId(idBoya));
 
     }
     // fin bonus 1
 
-    //epic bonus
+    // epic bonus
 
     @GetMapping("/muestras/anomalias/{idBoya}")
-    public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya){
-        
-             
+    public ResponseEntity<?> alertaAnomalias(@PathVariable Integer idBoya) {
+
         List<Anomalia> anomalias = anomalia.traerAnomalias(service.traerMuestrasPorBoyaId(idBoya));
-        
-                       
+
         return ResponseEntity.ok(anomalias);
-        
+
     }
 
-    //fin epic bonus
+    // fin epic bonus
 
     @PostMapping("/muestras")
-    public ResponseEntity<?> crearMuestra(@RequestBody MuestraRequest req) throws ParseException{
+    public ResponseEntity<MuestraResponse> crearMuestra(@RequestBody MuestraRequest req) throws ParseException {
 
         MuestraResponse respuesta = new MuestraResponse();
 
-        Muestra muestra = service.crearMuestra(req.boyaId,req.horario,req.matricula,req.latitud,req.longitud,req.alturaNivelDelMar);
+        Muestra muestra = service.crearMuestra(req.boyaId, req.horario, req.matricula, req.latitud, req.longitud,
+                req.alturaNivelDelMar);
 
-        respuesta.id = muestra.getMuestraId();
-        serviceBoya.definirColorBoya(muestra.getBoya(), muestra);
-        respuesta.color = muestra.getBoya().getLuzColor();
-                  
-        
-        return ResponseEntity.ok(respuesta);
-        
+        if (service.validarCoordenadas(muestra)) {
+
+            respuesta.id = muestra.getMuestraId();
+            serviceBoya.definirColorBoya(muestra.getBoya(), muestra);
+            respuesta.color = muestra.getBoya().getLuzColor();
+            return ResponseEntity.ok(respuesta);
+
+        } else {
+
+            respuesta.isOk = false;
+            respuesta.message = "Error, coordenadas inválidas";
+
+            return ResponseEntity.badRequest().body(respuesta);
+
+        }
+
     }
 
-    
     @DeleteMapping("/muestras/{id}")
-    public ResponseEntity<?> resetBoyaColor(@PathVariable Integer id){
-        
+    public ResponseEntity<?> resetBoyaColor(@PathVariable Integer id) {
+
         GenericResponse respuesta = new GenericResponse();
 
         Muestra muestra = service.buscarMuestraPorId(id);
-        
+
         Boya boya = serviceBoya.buscarBoyaPorId(muestra.getBoya().getBoyaId());
 
+        service.eliminarMuestra(muestra);
         serviceBoya.ResetearColor(boya);
 
         respuesta.isOk = true;
         respuesta.id = muestra.getBoya().getBoyaId();
-        respuesta.message = "luz reseteada con éxito";
-        
+        respuesta.message = "muestra eliminada y luz reseteada con éxito";
+
         return ResponseEntity.ok(respuesta);
 
-
     }
-    
+
 }

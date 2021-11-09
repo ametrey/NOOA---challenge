@@ -34,17 +34,24 @@ public class BoyaController {
     }
 
     @PostMapping("/boyas")
-    public ResponseEntity<?> crearBoya(@RequestBody BoyaRequest request){
+    public ResponseEntity<GenericResponse> crearBoya(@RequestBody BoyaRequest request){
         
         GenericResponse respuesta = new GenericResponse();
 
         Boya boya = service.crearBoya(request.longitudInstalacion, request.latitudInstalacion);
 
+        if(service.validarCoordenadas(boya)){
         respuesta.isOk = true;
         respuesta.id = boya.getBoyaId();
         respuesta.message = "boya creada con exito";
 
         return ResponseEntity.ok(respuesta);
+
+        }else{
+        respuesta.isOk = false;
+        respuesta.message ="error coordenadas";
+        return ResponseEntity.badRequest().body(respuesta);
+        }
     }
 
     @PutMapping("/boyas/{id}")
