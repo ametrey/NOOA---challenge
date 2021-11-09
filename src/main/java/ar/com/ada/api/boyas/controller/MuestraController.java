@@ -112,12 +112,12 @@ public class MuestraController {
 
         Boya boya = serviceBoya.buscarBoyaPorId(muestra.getBoya().getBoyaId());
 
-        service.eliminarMuestra(muestra);
+        
         serviceBoya.ResetearColor(boya);
 
         respuesta.isOk = true;
         respuesta.id = muestra.getBoya().getBoyaId();
-        respuesta.message = "muestra eliminada y luz reseteada con éxito";
+        respuesta.message = "luz reseteada con éxito";
 
         return ResponseEntity.ok(respuesta);
 
