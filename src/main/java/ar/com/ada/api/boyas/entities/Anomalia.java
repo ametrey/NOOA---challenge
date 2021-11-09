@@ -10,7 +10,7 @@ public class Anomalia {
 
     private Double alturaNivelDelMarActual;
     private Date horarioInicioAnomalia;
-    private Date horarioInicioFinAnomalia;
+    private Date horarioFinAnomalia;
     private TipoAlertaEnum tipoAlerta;
 
     public Double getAlturaNivelDelMarActual() {
@@ -29,12 +29,12 @@ public class Anomalia {
         this.horarioInicioAnomalia = horarioInicioAnomalia;
     }
 
-    public Date getHorarioInicioFinAnomalia() {
-        return horarioInicioFinAnomalia;
+    public Date getHorarioFinAnomalia() {
+        return horarioFinAnomalia;
     }
 
-    public void setHorarioInicioFinAnomalia(Date horarioInicioFinAnomalia) {
-        this.horarioInicioFinAnomalia = horarioInicioFinAnomalia;
+    public void setHorarioFinAnomalia(Date horarioInicioFinAnomalia) {
+        this.horarioFinAnomalia = horarioInicioFinAnomalia;
     }
 
     public TipoAlertaEnum getTipoAlerta() {
@@ -57,7 +57,7 @@ public class Anomalia {
                     muestras.get(i + 1).getAlturaNivelMar()) > 500)) {
 
                 impacto.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
-                impacto.setHorarioInicioFinAnomalia(muestras.get(i + 1).getHorarioMuestra());
+                impacto.setHorarioFinAnomalia(muestras.get(i + 1).getHorarioMuestra());
                 impacto.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
                 impacto.setTipoAlerta(TipoAlertaEnum.IMPACTO);
                 anomalias.add(impacto);
@@ -74,7 +74,7 @@ public class Anomalia {
 
                                         
                 kaiju.setHorarioInicioAnomalia(muestras.get(i).getHorarioMuestra());
-                kaiju.setHorarioInicioFinAnomalia(muestras.get(i + 1).getHorarioMuestra());
+                kaiju.setHorarioFinAnomalia(muestras.get(i + 1).getHorarioMuestra());
                 kaiju.setAlturaNivelDelMarActual(muestras.get(i + 1).getAlturaNivelMar());
                 kaiju.setTipoAlerta(TipoAlertaEnum.KAIJU);
                 anomalias.add(kaiju);
