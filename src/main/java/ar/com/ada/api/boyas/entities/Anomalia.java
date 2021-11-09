@@ -106,14 +106,7 @@ public class Anomalia {
 
     }
 
-    public Boolean esAlertaKaiju(List<Muestra> muestras) {
-
-        for (int i = 0; i < muestras.size(); i++) {
-
-        }
-        return false;
-
-    }
+    
 
     public Long minutos(Date primerFecha, Date segundaFecha) {
         
