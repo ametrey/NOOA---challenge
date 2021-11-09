@@ -11,11 +11,11 @@ BLUE is default colour of the light on the bouy when it's created.
 
 When you add a Sample to a Bouy, the light will turn to:
 
-GREEN: when the difference between the starting sea level and the new sample level sea is less than 50 mtrs.
+GREEN: when the difference between the starting sea level and the new sample sea level is less than 50 mtrs.
 
-YELLOW: when the difference between the starting sea level and the new sample level sea is between 51 and 100 mtrs.
+YELLOW: when the difference between the starting sea level and the new sample sea level is between 51 and 100 mtrs.
 
-RED: when the difference between the starting sea level and the new sample level sea is above 100 mtrs.
+RED: when the difference between the starting sea level and the new sample sea level is above 100 mtrs.
 
 It has an Anomaly alert: when the difference on sea level on two samples equals 200 mtrs and the lapsed time is above 10 minutes it returns a KAIJU alert (GODZILLA is coming!!!).
 when the difference on sea level on two samples is more than 500 mtrs it returns an IMPACT alert (Meteorite or Alien vessel).
