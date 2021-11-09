@@ -28,4 +28,10 @@ POSTMAN Doc: https://documenter.getpostman.com/view/16169993/U16gNmaw
 
 Heroku App: https://buoys-manager.herokuapp.com/
 
+Database Schema:
+
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/LnQzQvF/diagramaboyassql.png" alt="diagramaboyassql" border="0"></a>
+
+
+
 
