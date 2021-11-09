@@ -84,8 +84,11 @@ public class MuestraController {
 
         if (service.validarCoordenadas(muestra)) {
 
-            respuesta.id = muestra.getMuestraId();
+            
             serviceBoya.definirColorBoya(muestra.getBoya(), muestra);
+            respuesta.isOk=true;
+            respuesta.message = "muestra creada con éxito";
+            respuesta.id = muestra.getMuestraId();
             respuesta.color = muestra.getBoya().getLuzColor();
             return ResponseEntity.ok(respuesta);
 
