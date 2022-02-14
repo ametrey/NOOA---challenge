@@ -26,7 +26,7 @@ No authentication needed.
 
 POSTMAN Doc: https://documenter.getpostman.com/view/16169993/U16gNmaw
 
-Heroku App: https://buoys-manager.herokuapp.com/
+Heroku App: https://buoys-manager.herokuapp.com/buoys-manager.html
 
 Database Schema:
 
